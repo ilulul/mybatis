@@ -1,0 +1,54 @@
+server:
+  port: 8072
+  tomcat:
+    uri-encoding: UTF-8
+spring:
+  jackson:
+    serialization:
+      indent_output: true
+  http:
+    encoding:
+      charset: UTF-8
+      force: true
+      enabled: true
+  thymeleaf:
+    cache: false
+    check-template: true
+    enabled: true
+    encoding: UTF-8
+    mode: LEGACYHTML5
+    prefix: classpath:/templates/
+    suffix: .html
+    servlet:
+      content-type: text/html
+
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3307/test?serverTimezone=Hongkong&useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: lll
+
+mybatis:
+  mapper-locations: classpath:mybatis/*.xml
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    auto-mapping-behavior: full
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath*:mapper/**/*Mapper.xml
+  global-config:
+    # 逻辑删除配置
+    db-config:
+      # 删除前
+      logic-not-delete-value: 1
+      # 删除后
+      logic-delete-value: 0
+# Logger Config
+logging:
+  level:
+    cn.com.vicente.demo: debug
+
+
+
+
