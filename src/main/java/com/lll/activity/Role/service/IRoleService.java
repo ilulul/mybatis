@@ -3,6 +3,8 @@ package com.lll.activity.Role.service;
 import com.lll.activity.Role.entity.Role;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.Map;
+
 /**
  * <p>
  *  服务类
@@ -14,4 +16,10 @@ import com.baomidou.mybatisplus.extension.service.IService;
 public interface IRoleService extends IService<Role> {
 
     int queryCount();
+
+    int add(Role role);
+
+    void updateRoleById(Role role);
+
+    Map queryList(Role role, Integer page, Integer limit);
 }
