@@ -8,6 +8,8 @@ import com.lll.activity.Role.entity.Role;
 import com.lll.activity.Role.mapper.RoleMapper;
 import com.lll.activity.Role.service.IRoleService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.lll.activity.Role.vo.RoleVo;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +18,7 @@ import java.util.Map;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author jobob
@@ -26,7 +28,8 @@ import java.util.Map;
 public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IRoleService {
 
     @Autowired
-    private  RoleMapper roleMapper;
+    private RoleMapper roleMapper;
+
     @Override
     public int queryCount() {
         return roleMapper.queryCount();
@@ -45,15 +48,27 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IR
     }
 
     @Override
-    public Map queryList(Role role, Integer page, Integer limit) {
-        HashMap map=new HashMap();
+    public Map queryList(RoleVo role, Integer page, Integer limit) {
+        Map<String,Object> paramsDTO = new HashMap<>();
+        paramsDTO.put("time",role.getStartTime());
+        String time = (String) paramsDTO.get("time");
+        HashMap map = new HashMap();
         //开启分页
-        Page ordersPage = new Page(page,limit);
+        Page ordersPage = new Page(page, limit);
         //查询构造器
         Wrapper wrapper = new QueryWrapper();
-
+        //姓名模糊匹配
+        ((QueryWrapper) wrapper).like(StringUtils.isNotBlank(role.getName()),"name",role.getName());
+        //时间区间匹配
+        if(time!=null && !"".equals(time)){
+            ((QueryWrapper) wrapper).ge("createtime",time);
+        }
+        if(role.getEndTime()!=null && !"".equals(role.getEndTime())){
+            ((QueryWrapper) wrapper).le("createtime",role.getEndTime());
+        }
         IPage<Role> ordersIPage = roleMapper.selectPage(ordersPage, wrapper);
-              map.put("list",ordersIPage);
+
+        map.put("list", ordersIPage);
 
         return map;
     }

@@ -4,13 +4,10 @@ package com.lll.activity.Role.controller;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
 import com.lll.activity.Role.entity.Role;
 import com.lll.activity.Role.service.IRoleService;
+import com.lll.activity.Role.vo.RoleVo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -55,7 +52,7 @@ public class RoleController {
     }
 
     @PostMapping("list")
-    public Map RoleList(Role role, Integer page , Integer limit) {
+    public Map RoleList(@RequestBody RoleVo role, Integer page , Integer limit) {
         if (page==null)
             page=1;
         if(limit==null)

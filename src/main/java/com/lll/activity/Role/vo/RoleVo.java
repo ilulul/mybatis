@@ -1,8 +1,4 @@
-package com.lll.activity.Role.entity;
-
-import java.time.LocalDateTime;
-import java.io.Serializable;
-import java.util.Date;
+package com.lll.activity.Role.vo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -11,6 +7,10 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * <p>
@@ -23,14 +23,13 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-public class Role implements Serializable {
+public class RoleVo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     /**
      * ID
      */
-    @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
     /**
@@ -51,7 +50,7 @@ public class Role implements Serializable {
     /**
      * 创建时间
      */
-//    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date createtime;
 
     /**
@@ -66,9 +65,12 @@ public class Role implements Serializable {
     private String status;
 
 
+
     @TableField(exist=false)
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private String startTime;
 
     @TableField(exist=false)
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private String endTime;
 }

@@ -1,7 +1,4 @@
-package com.lll.activity.user.entity;
-
-import java.io.Serializable;
-import java.time.LocalDateTime;
+package com.lll.activity.user.VO;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -10,6 +7,9 @@ import com.lll.activity.user.PageVo;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -22,7 +22,7 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-public class User  implements Serializable  {
+public class UserVo extends PageVo implements Serializable  {
 
     private static final long serialVersionUID = 1L;
 

@@ -1,7 +1,11 @@
 package com.lll.activity.user.service;
 
+import com.lll.activity.user.VO.UserVo;
 import com.lll.activity.user.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.lll.activity.utils.PageUtils;
+
+import java.util.HashMap;
 
 /**
  * <p>
@@ -13,4 +17,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IUserService extends IService<User> {
 
+    PageUtils queryList(HashMap<String, Object> map);
 }
