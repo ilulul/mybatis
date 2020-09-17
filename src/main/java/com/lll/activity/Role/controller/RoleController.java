@@ -30,9 +30,9 @@ public class RoleController {
     private IRoleService roleService;
 
     @GetMapping("query")
-    public int roleCount(){
-        int count =roleService.queryCount();
-        return count;
+    public String roleCount(){
+//        int count =roleService.queryCount();
+        return "it'ok,hello world";
     }
 
     @PostMapping("add")
@@ -51,8 +51,8 @@ public class RoleController {
        roleService.updateRoleById(role);
     }
 
-    @PostMapping("list")
-    public Map RoleList(@RequestBody RoleVo role, Integer page , Integer limit) {
+    @GetMapping("list")
+    public Map RoleList(RoleVo role, Integer page , Integer limit) {
         if (page==null)
             page=1;
         if(limit==null)
