@@ -21,10 +21,12 @@ spring:
     suffix: .html
     servlet:
       content-type: text/html
-
+  activiti:
+    database-schema-update: false
+    history-level: full
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://192.168.10.21:3307/test?serverTimezone=Hongkong&useUnicode=true&characterEncoding=utf-8
+    url: jdbc:mysql://192.168.10.21:3307/data?serverTimezone=Hongkong&useUnicode=true&characterEncoding=utf-8
     username: root
     password: lll
 
@@ -44,7 +46,7 @@ mybatis-plus:
       logic-not-delete-value: 1
       # 删除后
       logic-delete-value: 0
-# Logger Config
+# Logger Config 打印sql
 logging:
   level:
     cn.com.vicente.demo: debug
