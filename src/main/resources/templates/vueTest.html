@@ -12,22 +12,32 @@
     <p>{{test}}</p>
     <button @click="add(5)">+</button>
     <button @click="sbu(5)">_</button>
+    <ul v-for="(item,index) in list">
+        <li>{{index}}:{{item}}</li>
+    </ul>
 </div>
 </body>
 <script>
 
-    const app=new Vue({
-        el:'#app',
-        data:{
-            test:0
+const app = new Vue({
+        el: '#app',
+        data: {
+            test: 0,
+            list: [
+                "hello",
+                "nihao",
+                "ok",
+                "no"
+            ],
+
         },
-        methods:{
-           add: function(id){
-               this.test=this.test+id
-           },
-           sbu: function () {
-               this.test--
-           }
+        methods: {
+            add: function (id) {
+                this.test = this.test + id
+            },
+            sbu: function () {
+                this.test--
+            }
         }
     })
 

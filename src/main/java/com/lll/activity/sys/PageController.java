@@ -17,6 +17,6 @@ public class PageController {
     public String vueTest(){
 
 
-        return "vueTEST";
+        return "vueTest";
     }
 }
