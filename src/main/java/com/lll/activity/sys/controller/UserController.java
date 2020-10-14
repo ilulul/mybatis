@@ -34,7 +34,7 @@ public class UserController {
         //接收前端的map
         HashMap<String, Object> map = new HashMap();
         map.put("page", String.valueOf(user.getPage()));
-        map.put("limit",String.valueOf(user.getLimit()));
+        map.put("limit", String.valueOf(user.getLimit()));
         map.put("username", user.getUsername());
         map.put("name", user.getName());
         PageUtils pageUtils = userService.queryList(map);

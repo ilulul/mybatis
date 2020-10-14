@@ -1,9 +1,9 @@
-import { Plugin } from 'webpack';
+import {Plugin} from 'webpack';
 
 interface WebpackPluginOptions {
-  filename?: string;
+    filename?: string;
 }
 
 export interface WebpackPlugin {
-  new (options?: WebpackPluginOptions): Plugin;
+    new(options?: WebpackPluginOptions): Plugin;
 }

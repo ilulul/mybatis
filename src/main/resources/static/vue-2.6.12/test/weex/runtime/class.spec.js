@@ -1,8 +1,8 @@
-import { getRoot, fireEvent, compileAndExecute } from '../helpers/index'
+import {getRoot, fireEvent, compileAndExecute} from '../helpers/index'
 
 describe('generate class', () => {
-  it('should be generated', () => {
-    compileAndExecute(`
+    it('should be generated', () => {
+        compileAndExecute(`
       <div>
         <text class="a b c">Hello World</text>
       </div>
@@ -13,19 +13,19 @@ describe('generate class', () => {
         c: { fontWeight: 'bold' }
       }
     `).then(instance => {
-      expect(getRoot(instance)).toEqual({
-        type: 'div',
-        children: [{
-          type: 'text',
-          classList: ['a', 'b', 'c'],
-          attr: { value: 'Hello World' }
-        }]
-      })
+            expect(getRoot(instance)).toEqual({
+                type: 'div',
+                children: [{
+                    type: 'text',
+                    classList: ['a', 'b', 'c'],
+                    attr: {value: 'Hello World'}
+                }]
+            })
+        })
     })
-  })
 
-  it('should be updated', (done) => {
-    compileAndExecute(`
+    it('should be updated', (done) => {
+        compileAndExecute(`
       <div @click="foo">
         <text :class="['a', x]">Hello World</text>
       </div>
@@ -46,33 +46,33 @@ describe('generate class', () => {
         }
       }
     `).then(instance => {
-      expect(getRoot(instance)).toEqual({
-        type: 'div',
-        event: ['click'],
-        children: [{
-          type: 'text',
-          classList: ['a', 'b'],
-          attr: { value: 'Hello World' }
-        }]
-      })
-      fireEvent(instance, '_root', 'click')
-      return instance
-    }).then(instance => {
-      expect(getRoot(instance)).toEqual({
-        type: 'div',
-        event: ['click'],
-        children: [{
-          type: 'text',
-          classList: ['a', 'd'],
-          attr: { value: 'Hello World' }
-        }]
-      })
-      done()
+            expect(getRoot(instance)).toEqual({
+                type: 'div',
+                event: ['click'],
+                children: [{
+                    type: 'text',
+                    classList: ['a', 'b'],
+                    attr: {value: 'Hello World'}
+                }]
+            })
+            fireEvent(instance, '_root', 'click')
+            return instance
+        }).then(instance => {
+            expect(getRoot(instance)).toEqual({
+                type: 'div',
+                event: ['click'],
+                children: [{
+                    type: 'text',
+                    classList: ['a', 'd'],
+                    attr: {value: 'Hello World'}
+                }]
+            })
+            done()
+        })
     })
-  })
 
-  it('should be applied in order', (done) => {
-    compileAndExecute(`
+    it('should be applied in order', (done) => {
+        compileAndExecute(`
       <div @click="foo">
         <text :class="arr">Hello World</text>
       </div>
@@ -91,33 +91,33 @@ describe('generate class', () => {
         }
       }
     `).then(instance => {
-      expect(getRoot(instance)).toEqual({
-        type: 'div',
-        event: ['click'],
-        children: [{
-          type: 'text',
-          classList: ['b', 'a'],
-          attr: { value: 'Hello World' }
-        }]
-      })
-      fireEvent(instance, '_root', 'click')
-      return instance
-    }).then(instance => {
-      expect(getRoot(instance)).toEqual({
-        type: 'div',
-        event: ['click'],
-        children: [{
-          type: 'text',
-          classList: ['b', 'a', 'c'],
-          attr: { value: 'Hello World' }
-        }]
-      })
-      done()
+            expect(getRoot(instance)).toEqual({
+                type: 'div',
+                event: ['click'],
+                children: [{
+                    type: 'text',
+                    classList: ['b', 'a'],
+                    attr: {value: 'Hello World'}
+                }]
+            })
+            fireEvent(instance, '_root', 'click')
+            return instance
+        }).then(instance => {
+            expect(getRoot(instance)).toEqual({
+                type: 'div',
+                event: ['click'],
+                children: [{
+                    type: 'text',
+                    classList: ['b', 'a', 'c'],
+                    attr: {value: 'Hello World'}
+                }]
+            })
+            done()
+        })
     })
-  })
 
-  it('should be cleared', (done) => {
-    compileAndExecute(`
+    it('should be cleared', (done) => {
+        compileAndExecute(`
       <div @click="foo">
         <text :class="['a', x]">Hello World</text>
       </div>
@@ -134,28 +134,28 @@ describe('generate class', () => {
         }
       }
     `).then(instance => {
-      expect(getRoot(instance)).toEqual({
-        type: 'div',
-        event: ['click'],
-        children: [{
-          type: 'text',
-          classList: ['a', 'b'],
-          attr: { value: 'Hello World' }
-        }]
-      })
-      fireEvent(instance, '_root', 'click')
-      return instance
-    }).then(instance => {
-      expect(getRoot(instance)).toEqual({
-        type: 'div',
-        event: ['click'],
-        children: [{
-          type: 'text',
-          classList: ['a', 'c'],
-          attr: { value: 'Hello World' }
-        }]
-      })
-      done()
+            expect(getRoot(instance)).toEqual({
+                type: 'div',
+                event: ['click'],
+                children: [{
+                    type: 'text',
+                    classList: ['a', 'b'],
+                    attr: {value: 'Hello World'}
+                }]
+            })
+            fireEvent(instance, '_root', 'click')
+            return instance
+        }).then(instance => {
+            expect(getRoot(instance)).toEqual({
+                type: 'div',
+                event: ['click'],
+                children: [{
+                    type: 'text',
+                    classList: ['a', 'c'],
+                    attr: {value: 'Hello World'}
+                }]
+            })
+            done()
+        })
     })
-  })
 })

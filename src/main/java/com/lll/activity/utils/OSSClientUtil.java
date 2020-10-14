@@ -17,8 +17,6 @@ public class OSSClientUtil {
     public static final Logger logger = LoggerFactory.getLogger(OSSClientUtil.class);
 
 
-
-
     private String endpoint = "oss-cn-beijing.aliyuncs.com";
     // accessKey
     private String accessKeyId = "LTAIkbvaunD3HbkI";
@@ -27,7 +25,6 @@ public class OSSClientUtil {
     private String bucketName = "lll33333uuu";
     // 文件存储目录
     private String filedir = "lll/";
-
 
 
     private OSSClient ossClient;
@@ -92,16 +89,14 @@ public class OSSClientUtil {
             String[] split = fileUrl.split("/");
             return this.getUrl(this.filedir + split[split.length - 1]);
         }
-        return "" ;
+        return "";
     }
 
     /**
      * 上传到OSS服务器 如果同名文件会覆盖服务器上的
      *
-     * @param instream
-     *            文件流
-     * @param fileName
-     *            文件名称 包括后缀名
+     * @param instream 文件流
+     * @param fileName 文件名称 包括后缀名
      * @return 出错返回"" ,唯一MD5数字签名
      */
     public String uploadFile2OSS(InputStream instream, String fileName) {
@@ -122,7 +117,7 @@ public class OSSClientUtil {
             logger.error(e.getMessage(), e);
         } finally {
             try {
-                if (instream !=null ) {
+                if (instream != null) {
                     instream.close();
                 }
             } catch (IOException e) {
@@ -181,6 +176,6 @@ public class OSSClientUtil {
             System.out.println(url);
             return url.toString();
         }
-        return  "";
+        return "";
     }
 }

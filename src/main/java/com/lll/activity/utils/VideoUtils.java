@@ -21,7 +21,6 @@ public class VideoUtils {
     private Logger logger = LoggerFactory.getLogger(getClass());
 
 
-
     private static Map<String, Integer> sizeBitRateMap;
 
     static {

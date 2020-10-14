@@ -13,7 +13,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author jobob
@@ -65,9 +65,9 @@ public class Role implements Serializable {
     private String status;
 
 
-    @TableField(exist=false)
+    @TableField(exist = false)
     private String startTime;
 
-    @TableField(exist=false)
+    @TableField(exist = false)
     private String endTime;
 }

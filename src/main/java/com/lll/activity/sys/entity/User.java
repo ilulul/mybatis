@@ -12,7 +12,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author jobob
@@ -21,7 +21,7 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-public class User  implements Serializable  {
+public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -32,9 +32,9 @@ public class User  implements Serializable  {
     private Long id;
 
 
-
     /**
      * 用户名
+     *
      * @TableField(select = false)注解可以不查询出username字段
      * @TableField(exist=false)可以不检查表中是否有这个字段
      */

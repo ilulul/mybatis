@@ -11,7 +11,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author jobob
@@ -57,7 +57,7 @@ public class Permission implements Serializable {
     private String auth;
 
     /**
-     * 是否折叠  0展开 1折叠   
+     * 是否折叠  0展开 1折叠
      */
     private Integer checked;
 

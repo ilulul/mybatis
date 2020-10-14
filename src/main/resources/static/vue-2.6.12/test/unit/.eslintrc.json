@@ -7,7 +7,9 @@
     "triggerEvent": true,
     "createTextVNode": true
   },
-  "plugins": ["jasmine"],
+  "plugins": [
+    "jasmine"
+  ],
   "rules": {
     "jasmine/no-focused-tests": 2,
     "no-unused-vars": 0

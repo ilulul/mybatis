@@ -1,9 +1,9 @@
-import { getRoot, createInstance } from '../helpers/index'
+import {getRoot, createInstance} from '../helpers/index'
 
 describe('framework APIs', () => {
-  it('createInstance', () => {
-    const id = String(Date.now() * Math.random())
-    const instance = createInstance(id, `
+    it('createInstance', () => {
+        const id = String(Date.now() * Math.random())
+        const instance = createInstance(id, `
       new Vue({
         render: function (createElement) {
           return createElement('div', {}, [
@@ -13,15 +13,15 @@ describe('framework APIs', () => {
         el: "body"
       })
     `)
-    expect(getRoot(instance)).toEqual({
-      type: 'div',
-      children: [{ type: 'text', attr: { value: 'Hello' }}]
+        expect(getRoot(instance)).toEqual({
+            type: 'div',
+            children: [{type: 'text', attr: {value: 'Hello'}}]
+        })
     })
-  })
 
-  it('createInstance with config', () => {
-    const id = String(Date.now() * Math.random())
-    const instance = createInstance(id, `
+    it('createInstance with config', () => {
+        const id = String(Date.now() * Math.random())
+        const instance = createInstance(id, `
       new Vue({
         render: function (createElement) {
           return createElement('div', {}, [
@@ -30,19 +30,19 @@ describe('framework APIs', () => {
         },
         el: "body"
       })
-    `, { bundleType: 'Vue', bundleUrl: 'http://example.com/', a: 1, b: 2 })
-    expect(getRoot(instance)).toEqual({
-      type: 'div',
-      children: [{
-        type: 'text',
-        attr: { value: '{"bundleType":"Vue","bundleUrl":"http://example.com/","a":1,"b":2,"env":{}}' }
-      }]
+    `, {bundleType: 'Vue', bundleUrl: 'http://example.com/', a: 1, b: 2})
+        expect(getRoot(instance)).toEqual({
+            type: 'div',
+            children: [{
+                type: 'text',
+                attr: {value: '{"bundleType":"Vue","bundleUrl":"http://example.com/","a":1,"b":2,"env":{}}'}
+            }]
+        })
     })
-  })
 
-  it('createInstance with external data', () => {
-    const id = String(Date.now() * Math.random())
-    const instance = createInstance(id, `
+    it('createInstance with external data', () => {
+        const id = String(Date.now() * Math.random())
+        const instance = createInstance(id, `
       new Vue({
         data: {
           a: 1,
@@ -55,16 +55,16 @@ describe('framework APIs', () => {
         },
         el: "body"
       })
-    `, undefined, { a: 111 })
-    expect(getRoot(instance)).toEqual({
-      type: 'div',
-      children: [{ type: 'text', attr: { value: '111-2' }}]
+    `, undefined, {a: 111})
+        expect(getRoot(instance)).toEqual({
+            type: 'div',
+            children: [{type: 'text', attr: {value: '111-2'}}]
+        })
     })
-  })
 
-  it('destroyInstance', (done) => {
-    const id = String(Date.now() * Math.random())
-    const instance = createInstance(id, `
+    it('destroyInstance', (done) => {
+        const id = String(Date.now() * Math.random())
+        const instance = createInstance(id, `
       new Vue({
         data: {
           x: 'Hello'
@@ -77,21 +77,21 @@ describe('framework APIs', () => {
         el: "body"
       })
     `)
-    expect(getRoot(instance)).toEqual({
-      type: 'div',
-      children: [{ type: 'text', attr: { value: 'Hello' }}]
+        expect(getRoot(instance)).toEqual({
+            type: 'div',
+            children: [{type: 'text', attr: {value: 'Hello'}}]
+        })
+        instance.$destroy()
+        setTimeout(() => {
+            expect(instance.document).toBeUndefined()
+            expect(instance.app).toBeUndefined()
+            done()
+        }, 0)
     })
-    instance.$destroy()
-    setTimeout(() => {
-      expect(instance.document).toBeUndefined()
-      expect(instance.app).toBeUndefined()
-      done()
-    }, 0)
-  })
 
-  it('refreshInstance', (done) => {
-    const id = String(Date.now() * Math.random())
-    const instance = createInstance(id, `
+    it('refreshInstance', (done) => {
+        const id = String(Date.now() * Math.random())
+        const instance = createInstance(id, `
       new Vue({
         data: {
           x: 'Hello'
@@ -104,26 +104,26 @@ describe('framework APIs', () => {
         el: "body"
       })
     `)
-    expect(getRoot(instance)).toEqual({
-      type: 'div',
-      children: [{ type: 'text', attr: { value: 'Hello' }}]
+        expect(getRoot(instance)).toEqual({
+            type: 'div',
+            children: [{type: 'text', attr: {value: 'Hello'}}]
+        })
+        instance.$refresh({x: 'World'})
+        setTimeout(() => {
+            expect(getRoot(instance)).toEqual({
+                type: 'div',
+                children: [{type: 'text', attr: {value: 'World'}}]
+            })
+            instance.$destroy()
+            const result = instance.$refresh({x: 'World'})
+            expect(result instanceof Error).toBe(true)
+            done()
+        })
     })
-    instance.$refresh({ x: 'World' })
-    setTimeout(() => {
-      expect(getRoot(instance)).toEqual({
-        type: 'div',
-        children: [{ type: 'text', attr: { value: 'World' }}]
-      })
-      instance.$destroy()
-      const result = instance.$refresh({ x: 'World' })
-      expect(result instanceof Error).toBe(true)
-      done()
-    })
-  })
 
-  it('registering global assets', () => {
-    const id = String(Date.now() * Math.random())
-    const instance = createInstance(id, `
+    it('registering global assets', () => {
+        const id = String(Date.now() * Math.random())
+        const instance = createInstance(id, `
       Vue.component('test', {
         render (h) {
           return h('div', 'Hello')
@@ -136,15 +136,15 @@ describe('framework APIs', () => {
         el: 'body'
       })
     `)
-    expect(getRoot(instance)).toEqual({
-      type: 'div',
-      children: [{ type: 'text', attr: { value: 'Hello' }}]
+        expect(getRoot(instance)).toEqual({
+            type: 'div',
+            children: [{type: 'text', attr: {value: 'Hello'}}]
+        })
     })
-  })
 
-  it('adding prototype methods', () => {
-    const id = String(Date.now() * Math.random())
-    const instance = createInstance(id, `
+    it('adding prototype methods', () => {
+        const id = String(Date.now() * Math.random())
+        const instance = createInstance(id, `
       Vue.prototype.$test = () => 'Hello'
       const Test = {
         render (h) {
@@ -158,15 +158,15 @@ describe('framework APIs', () => {
         el: 'body'
       })
     `)
-    expect(getRoot(instance)).toEqual({
-      type: 'div',
-      children: [{ type: 'text', attr: { value: 'Hello' }}]
+        expect(getRoot(instance)).toEqual({
+            type: 'div',
+            children: [{type: 'text', attr: {value: 'Hello'}}]
+        })
     })
-  })
 
-  it('using global mixins', () => {
-    const id = String(Date.now() * Math.random())
-    const instance = createInstance(id, `
+    it('using global mixins', () => {
+        const id = String(Date.now() * Math.random())
+        const instance = createInstance(id, `
       Vue.mixin({
         created () {
           this.test = true
@@ -186,9 +186,9 @@ describe('framework APIs', () => {
         el: 'body'
       })
     `)
-    expect(getRoot(instance)).toEqual({
-      type: 'div',
-      children: [{ type: 'text', attr: { value: 'Hello' }}]
+        expect(getRoot(instance)).toEqual({
+            type: 'div',
+            children: [{type: 'text', attr: {value: 'Hello'}}]
+        })
     })
-  })
 })

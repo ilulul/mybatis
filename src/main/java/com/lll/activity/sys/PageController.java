@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class PageController {
 
     @RequestMapping("/vueTest")
-    public String vueTest(){
+    public String vueTest() {
 
 
         return "vueTest";

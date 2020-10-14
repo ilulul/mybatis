@@ -5,11 +5,10 @@ import org.apache.commons.dbcp.BasicDataSource;
 
 import java.sql.DriverManager;
 import java.sql.SQLException;
+
 /**
- *
- *手动关闭资源
- *
- * */
+ * 手动关闭资源
+ */
 
 
 public class XBasicDataSource extends BasicDataSource {

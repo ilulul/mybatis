@@ -1,15 +1,15 @@
 form {
-  margin-bottom: 15px;
+    margin-bottom: 15px;
 }
 
 td.hidden {
-  color: #ccc;
+    color: #ccc;
 }
 
 table.filtered td.item {
-  background-color: #FFFFBF;
+    background-color: #FFFFBF;
 }
 
 table.filtered td.item.hidden {
-  background-color: transparent;
+    background-color: transparent;
 }

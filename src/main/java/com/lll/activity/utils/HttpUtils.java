@@ -59,7 +59,7 @@ public class HttpUtils {
             StringBuilder sb = new StringBuilder();
             if (conn.getResponseCode() == 200) {
                 Reader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
-                for (int c; (c = in.read()) >= 0;) {
+                for (int c; (c = in.read()) >= 0; ) {
                     sb.append((char) c);
                 }
                 in.close();
@@ -104,11 +104,12 @@ public class HttpUtils {
 
     /**
      * 计算MD5摘要指值
+     *
      * @param s
      * @return String
      */
     public static String getMD5(String s) {
-        char hexDigits[]={'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
+        char hexDigits[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
         try {
             byte[] btInput = s.getBytes();
             // 获得MD5摘要算法的 MessageDigest 对象

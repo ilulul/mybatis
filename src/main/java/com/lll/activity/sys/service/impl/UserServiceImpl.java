@@ -27,7 +27,8 @@ import java.util.HashMap;
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
 
     @Autowired
-    private  UserMapper userMapper;
+    private UserMapper userMapper;
+
     @Override
     public PageUtils queryList(HashMap<String, Object> map) {
 

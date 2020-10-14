@@ -11,7 +11,7 @@ import java.util.Map;
 
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
  * @author jobob
@@ -25,7 +25,7 @@ public class RoleController {
     private IRoleService roleService;
 
     @GetMapping("query")
-    public String roleCount(){
+    public String roleCount() {
 //        int count =roleService.queryCount();
         return "it'ok,hello world";
     }
@@ -43,15 +43,15 @@ public class RoleController {
 
     @PostMapping("update")
     public void updateRoleById(Role role) {
-       roleService.updateRoleById(role);
+        roleService.updateRoleById(role);
     }
 
     @GetMapping("list")
-    public Map RoleList(RoleVo role, Integer page , Integer limit) {
-        if (page==null)
-            page=1;
-        if(limit==null)
-            limit=10;
+    public Map RoleList(RoleVo role, Integer page, Integer limit) {
+        if (page == null)
+            page = 1;
+        if (limit == null)
+            limit = 10;
         Map map = roleService.queryList(role, page, limit);
 
         return map;

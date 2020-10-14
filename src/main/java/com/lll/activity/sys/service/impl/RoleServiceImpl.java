@@ -49,8 +49,8 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IR
 
     @Override
     public Map queryList(RoleVo role, Integer page, Integer limit) {
-        Map<String,Object> paramsDTO = new HashMap<>();
-        paramsDTO.put("time",role.getStartTime());
+        Map<String, Object> paramsDTO = new HashMap<>();
+        paramsDTO.put("time", role.getStartTime());
         String time = (String) paramsDTO.get("time");
         HashMap map = new HashMap();
         //开启分页
@@ -58,13 +58,13 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IR
         //查询构造器
         Wrapper wrapper = new QueryWrapper();
         //姓名模糊匹配
-        ((QueryWrapper) wrapper).like(StringUtils.isNotBlank(role.getName()),"name",role.getName());
+        ((QueryWrapper) wrapper).like(StringUtils.isNotBlank(role.getName()), "name", role.getName());
         //时间区间匹配
-        if(time!=null && !"".equals(time)){
-            ((QueryWrapper) wrapper).ge("createtime",time);
+        if (time != null && !"".equals(time)) {
+            ((QueryWrapper) wrapper).ge("createtime", time);
         }
-        if(role.getEndTime()!=null && !"".equals(role.getEndTime())){
-            ((QueryWrapper) wrapper).le("createtime",role.getEndTime());
+        if (role.getEndTime() != null && !"".equals(role.getEndTime())) {
+            ((QueryWrapper) wrapper).le("createtime", role.getEndTime());
         }
         IPage<Role> ordersIPage = roleMapper.selectPage(ordersPage, wrapper);
 

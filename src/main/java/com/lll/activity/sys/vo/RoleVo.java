@@ -11,7 +11,7 @@ import java.util.Date;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author jobob
@@ -62,12 +62,11 @@ public class RoleVo implements Serializable {
     private String status;
 
 
-
-    @TableField(exist=false)
+    @TableField(exist = false)
     @JsonFormat(pattern = "yyyy-MM-dd")
     private String startTime;
 
-    @TableField(exist=false)
+    @TableField(exist = false)
     @JsonFormat(pattern = "yyyy-MM-dd")
     private String endTime;
 }

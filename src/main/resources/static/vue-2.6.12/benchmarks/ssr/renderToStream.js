@@ -18,14 +18,14 @@ let str = ''
 let first
 let complete
 stream.once('data', () => {
-  first = self.performance.now() - s
+    first = self.performance.now() - s
 })
 stream.on('data', chunk => {
-  str += chunk
+    str += chunk
 })
 stream.on('end', () => {
-  complete = self.performance.now() - s
-  console.log(`first chunk: ${first.toFixed(2)}ms`)
-  console.log(`complete: ${complete.toFixed(2)}ms`)
-  console.log()
+    complete = self.performance.now() - s
+    console.log(`first chunk: ${first.toFixed(2)}ms`)
+    console.log(`complete: ${complete.toFixed(2)}ms`)
+    console.log()
 })

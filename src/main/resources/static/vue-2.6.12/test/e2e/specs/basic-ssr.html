@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <title></title>
-  </head>
-  <body>
-    <script src="../../../dist/vue.min.js"></script>
-    <script src="../../../packages/vue-server-renderer/basic.js"></script>
+</head>
+<body>
+<script src="../../../dist/vue.min.js"></script>
+<script src="../../../packages/vue-server-renderer/basic.js"></script>
 
-    <div id="result">wtf</div>
+<div id="result">wtf</div>
 
-    <script>
+<script>
     var vm = new Vue({
-      data: { msg: 'foo' },
-      template: '<div>{{ msg }}</div>'
+        data: {msg: 'foo'},
+        template: '<div>{{ msg }}</div>'
     })
 
     renderVueComponentToString(vm, function (err, result) {
-      document.getElementById('result').textContent = err && err.toString() || result
+        document.getElementById('result').textContent = err && err.toString() || result
     })
-    </script>
-  </body>
+</script>
+</body>
 </html>
